@@ -1,0 +1,1 @@
+This Tic Tac Toe game allows two players to play the aforementioned game via a computer's command line. This project was made as part of The Odin Project's curriculum.
