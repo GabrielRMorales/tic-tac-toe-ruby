@@ -1,6 +1,10 @@
+
+#game=TicTacToe.new
+#game.start
+
 class TicTacToe
 
-attr_accessor :sym
+attr_accessor :sym, :counter, :board
 
 def initialize
   @board=[["_", "_", "_"],["_", "_", "_"],["_", "_", "_"]]
@@ -11,21 +15,24 @@ def initialize
   @gameover=false
 end
 
-def test
+def testing
   return "checks out"
+end
+
+def counter_test
+  puts "Counter: #{@counter}"
+  return "X" if @counter==5
 end
 
 def start
   puts "Welcome to Tic Tac Toe"
   while @counter<9 && @gameover==false do
-  draw
-  set_symbol
-  show_choices
-  player_select
-  check if @counter>4
+    draw
+    show_choices
+    player_select
+    check if @counter>4
   end
   return "CAT'S GAME" if @counter==9
-  #@gameover=true
 end
 
 def draw
@@ -36,11 +43,7 @@ print y
 }
 puts ""
 }
-end
-
-def set_symbol
-  @counter%2==0 ? @sym="X": @sym="O"
-end
+end  
 
 def show_choices
   puts "You may choose:"
@@ -52,7 +55,8 @@ def show_choices
   }
 end
 
-def player_select    
+def player_select
+  @counter%2==0 ? @sym="X": @sym="O"  
   puts "Choose your move"
   decision=gets.chomp
   puts decision.to_i
@@ -79,15 +83,13 @@ def check
   ]
   win_conditions.each do |x|
     if x.all? {|y| y=="X"}
+      @gameover=true
       puts "Player X wins!"
-      @gameover=true
     elsif x.all? {|y| y=="O"}
-      puts "Player O wins!"
       @gameover=true
+      puts "Player O wins!"      
     end
   end
 end
 
 end
-game=TicTacToe.new
-game.start
